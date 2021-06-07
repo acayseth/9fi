@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "env": {},
+  "watch": [
+    "src/**/*.js"
+  ],
+  "exec": "node .",
+  "ext": "js"
+}

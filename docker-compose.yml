@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  9fi:
+    build: .
+    command: npm run start
+    volumes:
+      - .:/data
+      - /data/node_modules
