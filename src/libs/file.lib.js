@@ -7,13 +7,16 @@ module.exports.exists = (filename) => {
     return fs.existsSync(path.join(process.cwd(), 'storage', 'founds', `${filename}.found`));
   } catch (e) {
     console.error(e, 'e');
+    return false;
   }
 };
 
 module.exports.create = (filename) => {
   try {
-    return fs.writeFileSync(path.join(process.cwd(), 'storage', 'founds', `${filename}.found`));
+    fs.writeFileSync(path.join(process.cwd(), 'storage', 'founds', `${filename}.found`));
+    return true;
   } catch (e) {
     console.error(e, 'e');
+    return false;
   }
 };

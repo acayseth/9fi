@@ -16,8 +16,5 @@ module.exports.foundLinks = async (url) => {
     .filter(i => i > 3)
     .each((i, v) => links.push({ code: $(v).attr('href').replace(/\/ru\//ig, ''), url: `https://999.md${$(v).attr('href')}` }));
 
-  return [
-    {code: '1000001', url: 'urlstring_01'},
-    {code: '1000002', url: 'urlstring_02'}
-  ];
+  return links;
 };
