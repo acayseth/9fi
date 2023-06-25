@@ -3,5 +3,4 @@ services:
   fi:
     build: .
     volumes:
-      - .:/data
-      - /data/node_modules
+      - /data/storage:/data:rw
