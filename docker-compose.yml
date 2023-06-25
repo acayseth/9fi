@@ -3,4 +3,4 @@ services:
   fi:
     build: .
     volumes:
-      - /data/storage:/data:rw
+      - /data/storage:/data/storage:rw

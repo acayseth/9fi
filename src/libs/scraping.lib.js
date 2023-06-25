@@ -25,5 +25,5 @@ module.exports.foundLinks = async (url) => {
       }
     });
 
-  return links;
+  return links.slice(0, 10);
 };

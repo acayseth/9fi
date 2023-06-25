@@ -1,12 +1,8 @@
 FROM node:14
 
-RUN mkdir -p /data
+COPY . /data
 
-WORKDIR /data
-
-COPY package*.json /data
-
-RUN npm install --quiet
+RUN npm install
 
 COPY . /data
 
