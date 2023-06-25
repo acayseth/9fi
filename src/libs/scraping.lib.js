@@ -10,11 +10,20 @@ module.exports.foundLinks = async (url) => {
 
   const
     $ = cheerio.load(data), links = [],
-    selectors = 'ul.ads-list-photo li.ads-list-photo-item div.ads-list-photo-item-title a';
+    selectors = 'a';
 
   $(selectors)
-    .filter(i => i > 3)
-    .each((i, v) => links.push({ code: $(v).attr('href').replace(/\/ru\//ig, ''), url: `https://999.md${$(v).attr('href')}` }));
+    .filter(i => i > 24)
+    .each((i, v) => {
+      if ($(v).attr('href')) {
+        if (!/booster/.test($(v).attr('href')) && !/real-estate/.test($(v).attr('href'))) {
+          links.push({ 
+            code: $(v).attr('href').replace(/\/ru\//ig, ''),
+            url: `https://999.md${$(v).attr('href')}`
+          })
+        }
+      }
+    });
 
   return links;
 };

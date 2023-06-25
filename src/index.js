@@ -9,15 +9,19 @@ console.log('[start]', `-`.repeat(25));
 console.log(`   Cron:`, env.cron.job);
 console.log(`Craping:`, env.parsing.url);
 
-cron.schedule(env.cron.job, async () => {
-  
-  const parallel = (link) => {
-    fileLib.create(link.code);
-    telegrafLib.send(link.url);
-  };
-  
+const parallel = (link) => {
+  fileLib.create(link.code);
+  telegrafLib.send(link.url);
+};
+
+cron.schedule(env.cron.job, async () => {    
   const links = await scrapingLib.foundLinks(env.parsing.url);
-  links.filter(v => !fileLib.exists(v.code)).map((v, i) => setTimeout(() => parallel(v), i * 1000));
-  
+  links.filter(v => !fileLib.exists(v.code)).map((v, i) => setTimeout(() => parallel(v), i * 2300));
   console.log(new Date(), links.length);
 });
+
+(async () => {
+  const links = await scrapingLib.foundLinks(env.parsing.url);
+  links.filter(v => !fileLib.exists(v.code)).map((v, i) => setTimeout(() => parallel(v), i * 2300));
+  console.log(new Date(), links.length);
+})()
