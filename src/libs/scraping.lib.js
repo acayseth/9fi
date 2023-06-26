@@ -9,21 +9,25 @@ module.exports.foundLinks = async (url) => {
   }
 
   const
-    $ = cheerio.load(data), links = [],
+    $ = cheerio.load(data),
+    links = [],
+    tmpLinks = [];
     selectors = 'a';
 
   $(selectors)
     .filter(i => i > 24)
     .each((i, v) => {
-      if ($(v).attr('href')) {
-        if (!/booster/.test($(v).attr('href')) && !/real-estate/.test($(v).attr('href'))) {
-          links.push({ 
-            code: $(v).attr('href').replace(/\/ru\//ig, ''),
-            url: `https://999.md${$(v).attr('href')}`
-          })
+      const url = $(v).attr('href');
+      if (url && url !== '/') {
+        const code = parseInt(url.replace(/\/ro\//ig, ''), 10);
+        if (!/booster/.test(url) && !/real-estate/.test(url) ) {
+          if (!tmpLinks.includes(code)) {
+            tmpLinks.push(code);
+            links.push({ code, url: `https://999.md${url}` })
+          }
         }
       }
     });
 
-  return links.slice(0, 10);
+  return links;
 };

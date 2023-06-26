@@ -22,6 +22,8 @@ cron.schedule(env.cron.job, async () => {
 
 (async () => {
   const links = await scrapingLib.foundLinks(env.parsing.url);
-  links.filter(v => !fileLib.exists(v.code)).map((v, i) => setTimeout(() => parallel(v), i * 2300));
+  links
+    .filter(v => !fileLib.exists(v.code))
+    .map((v, i) => setTimeout(() => parallel(v), i * 2300));
   console.log(new Date(), links.length);
 })()

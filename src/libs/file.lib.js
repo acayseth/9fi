@@ -2,10 +2,7 @@ const
   path = require('path'),
   fs = require('fs');
 
-const fnReplace = (code) => {
-  const x = code.replace("/", "")
-  return x.replace("/", "");
-}
+const fnReplace = (code) => code
 
 module.exports.exists = (filename) => {
   try {
