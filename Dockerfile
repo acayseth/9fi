@@ -16,4 +16,5 @@ RUN adduser --system --uid 1001 nextjs
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 USER nextjs
+
 CMD npm run start

@@ -15,7 +15,7 @@ module.exports.exists = (filename) => {
 
 module.exports.create = (filename) => {
   try {
-    fs.writeFileSync(path.join(process.cwd(), 'storage', 'founds', `${fnReplace(filename)}.found`));
+    fs.writeFileSync(path.join(process.cwd(), 'storage', 'founds', `${fnReplace(filename)}.found`), '');
     return true;
   } catch (e) {
     console.error(e, 'e');
