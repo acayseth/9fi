@@ -1,6 +1,12 @@
 version: '3.8'
 services:
   fi:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     build: .
     volumes:
       - /data/storage:/data/storage:rw
+
+    restart: always
