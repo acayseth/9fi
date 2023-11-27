@@ -1,4 +1,2 @@
-*
-!.env.example
-!founds/
-!.gitignore
+/build
+/.storage/.env
