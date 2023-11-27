@@ -1,8 +1,7 @@
-const
-  dotenv = require('dotenv'),
-  path = require('path');
+import {config} from "dotenv";
+import {resolve} from "path";
 
-const getOsEnv = (key = null, required = true, _default = undefined) => {
+const getOsEnv = (key: string, required: boolean = true, _default: any = undefined) => {
   if (required && typeof process.env[key] === 'undefined')
     throw new Error(`Environment variable ${key} is required`);
   else if (!required && typeof process.env[key] === 'undefined')
@@ -10,7 +9,7 @@ const getOsEnv = (key = null, required = true, _default = undefined) => {
   return process.env[key];
 };
 
-dotenv.config({path: path.join(process.cwd(), 'storage', '.env')});
+config({path: resolve(process.cwd(), 'storage', '.env')});
 
 const env = {
   parsing: {
@@ -18,11 +17,13 @@ const env = {
   },
   telegram: {
     token: getOsEnv('TELEGRAM_BOT_TOKEN', true),
-    chatId: getOsEnv('TOLEGRAM_BOT_CHAT_ID', true),
+    chatId: getOsEnv('TELEGRAM_BOT_CHAT_ID', true),
   },
   cron: {
     job: getOsEnv('CRON_JOB', false, '* * * * *')
   }
 };
 
-module.exports = env;
+export {
+  env
+};
